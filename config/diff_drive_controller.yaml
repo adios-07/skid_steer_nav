@@ -14,7 +14,6 @@
     right_wheel_names: ["front_right_wheel_joint", "back_right_wheel_joint"]
 
     wheel_separation: 0.26
-    #wheels_per_side: 1  # actually 2, but both are controlled by 1 signal
     wheel_radius: 0.03
 
     wheel_separation_multiplier: 1.0
@@ -24,34 +23,28 @@
     publish_rate: 50.0
     odom_frame_id: odom
     base_frame_id: base_footprint
-    pose_covariance_diagonal : [0.001, 0.001, 0.0, 0.0, 0.0, 0.01]
+    pose_covariance_diagonal: [0.001, 0.001, 0.0, 0.0, 0.0, 0.01]
     twist_covariance_diagonal: [0.001, 0.0, 0.0, 0.0, 0.0, 0.01]
 
     open_loop: false
     enable_odom_tf: true
+    position_feedback: true
 
-    # cmd_vel_timeout: 0.5
-    #publish_limited_velocity: true
-    use_stamped_vel: false
-    #velocity_rolling_window_size: 10
+    cmd_vel_timeout: 0.5
+    publish_limited_velocity: true   # enables ~/cmd_vel_out topic for debugging
+    use_stamped_vel: true
+    velocity_rolling_window_size: 10
 
-    # Velocity and acceleration limits
-    # Whenever a min_* is unspecified, default to -max_*
-    # linear.x.has_velocity_limits: false
-    # linear.x.has_acceleration_limits: false
-    # linear.x.has_jerk_limits: false
-    # linear.x.max_velocity: 20.0
-    # linear.x.min_velocity: -20.0
-    # linear.x.max_acceleration: 20.0
-    # linear.x.max_jerk: 0.0
-    # linear.x.min_jerk: 0.0
+    # Velocity and acceleration limits (Jazzy style)
+    # Set to .NAN to disable a limit entirely
+    linear.x.max_velocity: .NAN          # m/s  — uncapped, set a value like 1.0 to cap
+    linear.x.min_velocity: .NAN          # defaults to -max_velocity if unset
+    linear.x.max_acceleration: .NAN      # m/s² — uncapped
+    linear.x.max_deceleration: .NAN
+    linear.x.max_jerk: .NAN
 
-    # angular.z.has_velocity_limits: true
-    # angular.z.has_acceleration_limits: true
-    # angular.z.has_jerk_limits: false
-    # angular.z.max_velocity: 1.0
-    # angular.z.min_velocity: -1.0
-    # angular.z.max_acceleration: 1.0
-    # angular.z.min_acceleration: -1.0
-    # angular.z.max_jerk: 0.0
-    # angular.z.min_jerk: 0.0
+    angular.z.max_velocity: .NAN         # rad/s — uncapped
+    angular.z.min_velocity: .NAN
+    angular.z.max_acceleration: .NAN
+    angular.z.max_deceleration: .NAN
+    angular.z.max_jerk: .NAN

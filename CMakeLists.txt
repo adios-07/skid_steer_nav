@@ -24,7 +24,7 @@ if(BUILD_TESTING)
 endif()
 
 install(
-  DIRECTORY config description launch worlds src maps meshes
+  DIRECTORY config description launch worlds src maps
   DESTINATION share/${PROJECT_NAME}
 )
 

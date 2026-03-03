@@ -99,6 +99,9 @@ def generate_launch_description():
             '--param-file',
             robot_controllers,
             ],
+        remappings=[
+            ('/diff_drive_base_controller/cmd_vel', '/cmd_vel')  # clean remap, no relay needed
+        ],
     )
 
     #Relay Cmd_vEL
@@ -108,7 +111,7 @@ def generate_launch_description():
         name='cmd_vel_relay',
         arguments=[
             '/cmd_vel',
-            '/diff_drive_base_controller/cmd_vel_unstamped'
+            '/diff_drive_base_controller/cmd_vel'
         ],
         output='screen'
     )
